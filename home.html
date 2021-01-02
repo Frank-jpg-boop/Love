@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Title Page</title>
+
+        <!-- Bootstrap CSS -->
+        
+        <link rel="stylesheet" href="css/title.css" />
+        <link rel="stylesheet" href="css/title2.css" />
+        <link rel="stylesheet" href="css/loader.css" />
+        <link rel="stylesheet" href="css/thrstar.css" />
+        <link rel="stylesheet" href="css/lovemore.css" />
+        <link rel="stylesheet" href="css/3dbox.css" />
+        <link rel="stylesheet" href="css/colok.css" />
+        
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.3/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="clock_box">
+            <div class="clock">
+                <p id="time"></p>
+            </div>
+        </div>
+        <div class="title" title="聚光灯">especially</div>
+        <div class="ball_container" title="左右摇摆">
+            <div class="loader">
+                <div class="ball loveMore">
+                    <div class="middle" id="p"></div>
+                    <div class="text"> love you three thousand times</div>
+                </div>
+            </div>
+        </div>
+        
+         
+        <script>
+            var counter =11;
+            var body = document.querySelector("body");
+            for (var i = 0; i <= counter; i++) {
+                var aixin = document.createElement("div");
+                aixin.setAttribute("class", "aixin");
+                var div_box = document.createElement("div");
+                div_box.setAttribute("class", "box");
+                div_box.appendChild(aixin);
+                body.appendChild(div_box);
+            }
+            var aixins = document.querySelectorAll(".aixin");
+            var div_box = document.querySelectorAll(".box");
+            for (var i = 0; i <= counter; i++) {
+                aixins[i].style.left = Math.random() * window.innerWidth + "px";
+                aixins[i].style.top = Math.random() * window.innerHeight + "px";
+            }
+            var select = [
+                "green",
+                "red",
+                "purple",
+                "yellow",
+                "pink",
+                "orange",
+                "blue",
+            ];
+            var times = setInterval(function () {
+                aixins[counter].style.animation = "moveX 3s linear infinite";
+                div_box[counter].style.animation = "moveY 30s linear infinite";
+                aixins[counter].setAttribute("id", "p");
+                aixins[counter].setAttribute(
+                    "class",
+                    "aixin " + select[Math.ceil(Math.random() * 6)]
+                );
+                counter--;
+                if (counter < 0) {
+                    clearInterval(times);
+                }
+            }, 100);
+        </script>
+
+        <div class="dbox" style="margin:10% 40%;width:100%;">
+            <section>
+                <div><img src="images/1.jpg" alt="" /></div>
+                <div><img src="images/2.jpg" alt="" /></div>
+                <div><img src="images/3.jpg" alt="" /></div>
+                <div><img src="images/4.jpg" alt="" /></div>
+                <div><img src="images/1.jpg" alt="" /></div>
+                <div><img src="images/2.jpg" alt="" /></div>
+                <div><img src="images/1.jpg" alt="" /></div>
+                <div><img src="images/2.jpg" alt="" /></div>
+                <div><img src="images/3.jpg" alt="" /></div>
+                <div><img src="images/4.jpg" alt="" /></div>
+                <div><img src="images/1.jpg" alt="" /></div>
+                <div><img src="images/2.jpg" alt="" /></div>
+            </section>
+        </div>
+         
+         
+        <script>
+            // 获取页面id=time的元素（P元素<p id="time">12:12:12 AM</p>）
+            var time = document.querySelector("#time");
+
+            // 定义函数传入time元素
+            function up(time_el) {
+                // 获取当前时间
+                let date = new Date();
+                // 获取时分秒
+                let h = date.getHours();
+                let m = date.getMinutes();
+                let s = date.getSeconds();
+                // 上午与下午
+                let day_night = "AM";
+
+                // 计算上午与下午
+                if (h > 12) {
+                    h = h - 12;
+                    day_night = "PM";
+                }
+
+                // 如果时间小于10则前面补充0
+                if (h < 10) { h = "0" + h; }
+                if (m < 10) { m = "0" + m; }
+                if (s < 10) { s = "0" + s; }
+
+                // 拼接时间并且赋值给time元素的文本中，从而显示
+                time_el.textContent = h + ":" + m + ":" + s + " " + day_night;
+
+            }
+
+            // 定时器，每秒执行一次实现更新
+            setInterval(() => {
+                up(time);
+            }, 1000);
+
+        </script>
+
+    </body>
+</html>
