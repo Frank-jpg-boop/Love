@@ -1,0 +1,67 @@
+/* 先让它为空，待会定义下边倒影 */
+.ball_container {
+    /* 现在把倒影给加上 */
+    -webkit-box-reflect: below 5px -webkit-linear-gradient(transparent 10%, rgba(0, 0, 0, 0.5));
+    display: inline-block;
+}
+.ball_container div{
+    display: inline-block;
+}
+.loader {
+    position: relative;
+    width: 20px;
+    height:20px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    /* 我们定义一下下边和右边的边框颜色 */
+    border-bottom-color: #06c8f0;
+    border-right-color: #06c8f0;
+    /* 顺时针旋转45度就可以得到这样一个半圆了 */
+    transform: rotate(45deg);
+    /* 动画  名称  时长  ease-in-out是两头慢，中间快 infinite就是无限次运动 alertnate是反向运行动画 */
+    animation: loader 2s ease-in-out infinite alternate;
+}
+
+.ball {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 50%;
+    animation: loader-reverse 2s ease-in-out infinite alternate;
+}
+
+/* 定义动画中的白色小球 */
+.ball::before {
+    content: "";
+    position: absolute;
+    bottom: 2px;
+    left: 2px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #fff;
+}
+
+/* 下面定义两个动画 */
+@keyframes loader {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        /* 顺时针旋转90度 */
+        transform: rotate(90deg);
+    }
+}
+
+@keyframes loader-reverse {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        /* 逆时针旋转180度 */
+        transform: rotate(-180deg);
+    }
+}
